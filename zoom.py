@@ -19,11 +19,6 @@ parser = argparse.ArgumentParser()  # defines the parser
 parser.add_argument('-u', '--url', help='Target wordpress website')  # Adding argument to the parser
 args = parser.parse_args()  # Parsing the arguments
 
-print('''%s  ____                
- /_  / ___  ___  ____ 
-  / /_/ %s_ \/ _%s \/    \\
- /___/\___%s/\%s___/_/_/_/%s\n''' % (yellow, white, yellow, white, yellow, end))
-
 if args.url:
     url = args.url
     response = requests.get('%s/wp-json/wp/v2/users' % url).text
