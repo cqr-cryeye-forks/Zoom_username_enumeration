@@ -24,7 +24,7 @@ if args.url:
     response = requests.get('%s/wp-json/wp/v2/users' % url).text
     if 'Sorry, you are not allowed to list users.' in response:
         print(' %s Not vulnerable' % bad)
-    elif 'Not Found' in response or '!DOCTYPE html' in response or '404' in response:
+    elif 'Not Found' in response or '!DOCTYPE html' in response or '404' in response or '<html>' in response:
         print('The requested URL was not found on this server')
     else:
         data = json.loads(response)
