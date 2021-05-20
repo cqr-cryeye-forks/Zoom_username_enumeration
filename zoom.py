@@ -2,6 +2,8 @@
 import argparse
 import requests
 import json
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 # Just some colors and shit bro
 white = '\033[97m'
@@ -21,7 +23,7 @@ args = parser.parse_args()  # Parsing the arguments
 
 if args.url:
     url = args.url
-    response = requests.get('%s/wp-json/wp/v2/users' % url).text
+    response = requests.get('%s/wp-json/wp/v2/users' % url, verify=False).text
     if 'Sorry, you are not allowed to list users.' in response:
         print(' %s Not vulnerable' % bad)
     elif 'Not Found' in response or '!DOCTYPE html' in response or '404' in response or '<html>' in response:
